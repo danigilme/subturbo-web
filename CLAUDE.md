@@ -20,9 +20,9 @@ High-fidelity iOS app prototype for SubTurbo, an AI subtitle generator.
 / — Home/Import
 /onboarding — 3-page swipeable onboarding
 /processing — Simulated processing with timers
-/editor — Style editor with live preview
-/editor/subtitles — Edit subtitle text
-/preview — Preview with playback controls
+/editor — Unified editor with Style/Text tabs, video preview, fullscreen mode
+/editor/subtitles — (redirect to /editor)
+/preview — (redirect to /editor)
 /export — Rendering progress + success state
 /paywall — Subscription paywall
 /settings — App settings

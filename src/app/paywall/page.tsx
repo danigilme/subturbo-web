@@ -152,7 +152,7 @@ export default function PaywallPage() {
               onClick={handleSubscribe}
               className="w-full h-[56px] bg-accent rounded-[14px] text-white text-[17px] font-bold active:scale-[0.98] transition-transform shadow-lg shadow-accent/30"
             >
-              Start Free Trial
+              Subscribe
             </button>
             <div className="flex items-center justify-center gap-3 mt-4">
               <button className="text-[13px] text-text-tertiary">Restore Purchases</button>

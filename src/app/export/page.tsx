@@ -7,9 +7,9 @@ type ExportPhase = 'rendering' | 'success';
 
 const renderLabels = [
   { pct: 0, label: 'Preparing...' },
-  { pct: 25, label: 'Burning in subtitles' },
-  { pct: 65, label: 'Replacing audio' },
-  { pct: 90, label: 'Saving' },
+  { pct: 5, label: 'Burning in subtitles...' },
+  { pct: 90, label: 'Replacing audio...' },
+  { pct: 95, label: 'Saving to camera roll...' },
 ];
 
 export default function ExportPage() {
@@ -22,10 +22,10 @@ export default function ExportPage() {
 
     const interval = setInterval(() => {
       setProgress(prev => {
-        const next = prev + 2;
+        const next = prev + 1.25;
         if (next >= 100) {
           clearInterval(interval);
-          setTimeout(() => setPhase('success'), 300);
+          setTimeout(() => setPhase('success'), 400);
           return 100;
         }
         return next;
@@ -63,7 +63,7 @@ export default function ExportPage() {
         </div>
 
         <h1 className="text-[28px] font-bold text-text-primary mb-2">Video saved!</h1>
-        <p className="text-[17px] text-text-secondary mb-12">Your subtitled video is ready</p>
+        <p className="text-[17px] text-text-secondary mb-12">Saved to your camera roll</p>
 
         <div className="w-full space-y-3">
           <button
@@ -102,13 +102,13 @@ export default function ExportPage() {
         </div>
       </div>
 
-      <h2 className="text-[22px] font-bold text-text-primary mb-2">Rendering your video...</h2>
+      <h2 className="text-[22px] font-bold text-text-primary mb-2">Creating your video...</h2>
       <p className="text-[15px] text-text-secondary mb-8">{currentLabel}</p>
 
       {/* Progress bar */}
       <div className="w-full h-[6px] bg-surface-high rounded-full overflow-hidden mb-3">
         <div
-          className="h-full bg-accent rounded-full transition-all duration-100 progress-pulse"
+          className="h-full bg-accent rounded-full transition-all duration-200 ease-out progress-pulse"
           style={{ width: `${progress}%` }}
         />
       </div>
