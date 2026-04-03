@@ -17,18 +17,17 @@ export default function Waveform({ color = 'var(--accent)', barCount = 40, anima
   });
 
   return (
-    <div className={`flex items-center justify-center gap-[2px] h-[60px] ${className}`}>
+    <div className={`flex items-center justify-center gap-[1.5px] h-[48px] ${className}`}>
       {bars.map((bar, i) => (
         <div
           key={i}
           className="rounded-full flex-shrink-0"
           style={{
-            width: `${Math.max(100 / barCount - 1, 2)}%`,
-            minWidth: '2px',
+            width: '1.5px',
             height: `${bar.height}%`,
             backgroundColor: noisy ? 'var(--text-tertiary)' : color,
             animation: animated ? `waveform-bar ${0.8 + Math.random() * 0.8}s ease-in-out ${bar.delay}s infinite` : 'none',
-            opacity: noisy ? 0.6 + Math.random() * 0.4 : 0.8 + Math.random() * 0.2,
+            opacity: noisy ? 0.4 + Math.random() * 0.3 : 0.5 + Math.random() * 0.3,
           }}
         />
       ))}

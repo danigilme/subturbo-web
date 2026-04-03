@@ -93,34 +93,31 @@ export default function ProcessingPage() {
             onClick={() => setShowCancel(true)}
             className="flex items-center gap-1 text-accent min-h-[44px] min-w-[44px]"
           >
-            <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
-              <path d="M10 2L2 10L10 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
+              <path d="M9 1L1 9L9 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span className="text-[17px]">Back</span>
           </button>
         }
       />
 
-      <div className="flex-1 flex flex-col items-center px-6 pt-8">
+      <div className="flex-1 flex flex-col items-center px-8 pt-12">
         {/* Video thumbnail placeholder */}
-        <div className="w-[160px] h-[284px] bg-surface rounded-[16px] mb-8 overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-high/50 to-surface" />
+        <div className="w-[140px] h-[248px] bg-surface/60 rounded-[16px] mb-10 overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-surface-high/30 to-surface/60" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[48px] h-[48px] rounded-full bg-surface-high/80 flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M4 3L17 10L4 17V3Z" fill="var(--text-tertiary)"/>
-              </svg>
-            </div>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" opacity="0.3">
+              <path d="M4 3L17 10L4 17V3Z" fill="var(--text-tertiary)"/>
+            </svg>
           </div>
         </div>
 
         {/* Waveform */}
-        <div className="w-full mb-8">
+        <div className="w-full mb-10 opacity-60">
           <Waveform animated={true} barCount={50} color="var(--accent)" />
         </div>
 
         {/* Steps */}
-        <div className="w-full space-y-1">
+        <div className="w-full">
           {steps.map((step, i) => (
             <ProcessingStep
               key={i}
@@ -132,29 +129,30 @@ export default function ProcessingPage() {
         </div>
 
         {/* Time remaining */}
-        <p className="text-[15px] text-text-tertiary mt-6">
-          About {timeLeft} seconds left
+        <p className="text-[12px] text-text-tertiary/60 mt-8">
+          About {timeLeft}s remaining
         </p>
       </div>
 
       {/* Cancel dialog */}
       {showCancel && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 animate-fade-in">
           <div className="w-full max-w-[393px] mx-4 mb-8 animate-fade-in-up">
-            <div className="bg-surface-high rounded-[14px] overflow-hidden mb-2">
-              <div className="px-4 py-4 text-center border-b border-divider">
+            <div className="bg-surface-high rounded-[16px] overflow-hidden mb-2">
+              <div className="px-4 py-5 text-center">
                 <p className="text-[13px] text-text-secondary">Cancel processing? Your progress will be lost.</p>
               </div>
+              <div className="h-px bg-divider/50" />
               <button
                 onClick={() => router.push('/')}
-                className="w-full py-3 text-[17px] text-error font-semibold text-center"
+                className="w-full py-3.5 text-[16px] text-error font-medium text-center"
               >
                 Cancel Processing
               </button>
             </div>
             <button
               onClick={() => setShowCancel(false)}
-              className="w-full py-3 bg-surface-high rounded-[14px] text-[17px] text-accent font-semibold text-center"
+              className="w-full py-3.5 bg-surface-high rounded-[16px] text-[16px] text-accent font-medium text-center"
             >
               Continue
             </button>

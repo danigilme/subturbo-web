@@ -2,16 +2,16 @@
 
 :root {
   --background: #0A0A0F;
-  --surface: #16161F;
-  --surface-high: #22222E;
-  --text-primary: #FFFFFF;
-  --text-secondary: #8E8E9A;
-  --text-tertiary: #4A4A56;
+  --surface: #131318;
+  --surface-high: #1C1C24;
+  --text-primary: #F0F0F2;
+  --text-secondary: #77778A;
+  --text-tertiary: #44444F;
   --accent: #7C5CFC;
   --accent-light: #9D84FF;
-  --success: #34C759;
-  --error: #FF3B30;
-  --divider: #1E1E2A;
+  --success: #7C5CFC;
+  --error: #FF453A;
+  --divider: #1A1A22;
 }
 
 @theme inline {
@@ -46,6 +46,7 @@ body {
   overscroll-behavior: none;
   user-select: none;
   -webkit-user-select: none;
+  letter-spacing: -0.01em;
 }
 
 /* iOS Safe Areas */
@@ -74,20 +75,20 @@ body {
   }
 }
 
-/* iOS Toggle */
+/* iOS Toggle — refined, smaller */
 .toggle-track {
-  width: 51px;
-  height: 31px;
-  border-radius: 15.5px;
+  width: 46px;
+  height: 28px;
+  border-radius: 14px;
   transition: background-color 0.3s ease;
 }
 
 .toggle-thumb {
-  width: 27px;
-  height: 27px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
 }
 
@@ -117,11 +118,11 @@ body {
 /* Progress bar */
 @keyframes progress-pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  50% { opacity: 0.8; }
 }
 
 .progress-pulse {
-  animation: progress-pulse 1.5s ease-in-out infinite;
+  animation: progress-pulse 2s ease-in-out infinite;
 }
 
 /* Waveform animation */
@@ -130,7 +131,7 @@ body {
   50% { transform: scaleY(1); }
 }
 
-/* Slide transitions */
+/* Slide transitions — softer, 300ms */
 @keyframes slide-in-right {
   from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
@@ -147,33 +148,33 @@ body {
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.9); }
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
 
 .animate-slide-in-right {
-  animation: slide-in-right 0.35s ease-out;
+  animation: slide-in-right 0.3s ease;
 }
 
 .animate-slide-in-left {
-  animation: slide-in-left 0.35s ease-out;
+  animation: slide-in-left 0.3s ease;
 }
 
 .animate-fade-in {
-  animation: fade-in 0.3s ease-out;
+  animation: fade-in 0.3s ease;
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.4s ease-out;
+  animation: fade-in-up 0.35s ease;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.3s ease-out;
+  animation: scale-in 0.3s ease;
 }
 
 /* Phone frame for desktop */
@@ -183,6 +184,6 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100dvh;
-    background: #000;
+    background: #050508;
   }
 }

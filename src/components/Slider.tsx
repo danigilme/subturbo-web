@@ -17,12 +17,12 @@ export default function Slider({ value, min, max, step = 1, onChange, label, val
     <div className="w-full py-2">
       {(label || valueLabel) && (
         <div className="flex justify-between items-center mb-2">
-          {label && <span className="text-[15px] text-text-secondary">{label}</span>}
-          {valueLabel && <span className="text-[15px] text-text-primary font-medium">{valueLabel}</span>}
+          {label && <span className="text-[13px] text-text-tertiary">{label}</span>}
+          {valueLabel && <span className="text-[13px] text-text-secondary font-medium">{valueLabel}</span>}
         </div>
       )}
       <div className="relative w-full h-[44px] flex items-center">
-        <div className="absolute w-full h-[4px] rounded-full bg-surface-high">
+        <div className="absolute w-full h-[2px] rounded-full bg-surface-high">
           <div
             className="h-full rounded-full bg-accent"
             style={{ width: `${pct}%` }}
@@ -38,8 +38,8 @@ export default function Slider({ value, min, max, step = 1, onChange, label, val
           className="absolute w-full h-[44px] opacity-0 cursor-pointer z-10"
         />
         <div
-          className="absolute w-[28px] h-[28px] rounded-full bg-white shadow-lg pointer-events-none"
-          style={{ left: `calc(${pct}% - 14px)` }}
+          className="absolute w-[18px] h-[18px] rounded-full bg-accent shadow-sm pointer-events-none"
+          style={{ left: `calc(${pct}% - 9px)` }}
         />
       </div>
     </div>

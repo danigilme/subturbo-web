@@ -44,35 +44,35 @@ const fontsMap: Record<string, { css: string; weight: number }> = Object.fromEnt
 function Section({ title, children, defaultOpen = false }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-t border-divider">
+    <div className="mt-1">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-4 px-4 min-h-[44px]"
+        className="w-full flex items-center justify-between py-3.5 px-6 min-h-[44px]"
       >
-        <span className="text-[15px] font-semibold text-text-secondary">{title}</span>
+        <span className="text-[10px] font-medium text-text-tertiary/60 uppercase tracking-[0.1em]">{title}</span>
         <svg
-          width="14" height="8" viewBox="0 0 14 8" fill="none"
-          className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          width="10" height="6" viewBox="0 0 10 6" fill="none"
+          className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
         >
-          <path d="M1 1L7 7L13 1" stroke="var(--text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M1 1L5 5L9 1" stroke="var(--text-tertiary)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.4"/>
         </svg>
       </button>
-      {open && <div className="px-4 pb-4">{children}</div>}
+      {open && <div className="px-6 pb-5">{children}</div>}
     </div>
   );
 }
 
 function ColorGrid({ colors, selected, onSelect }: { colors: string[]; selected: string; onSelect: (c: string) => void }) {
   return (
-    <div className="grid grid-cols-6 gap-3">
+    <div className="grid grid-cols-6 gap-3.5">
       {colors.map((c) => (
         <button
           key={c}
           onClick={() => onSelect(c)}
-          className={`w-[40px] h-[40px] rounded-full border-2 transition-all ${
-            selected === c ? 'border-accent scale-110' : 'border-transparent'
+          className={`w-[32px] h-[32px] rounded-full transition-all duration-300 ${
+            selected === c ? 'ring-[1.5px] ring-accent ring-offset-2 ring-offset-bg scale-105' : ''
           }`}
-          style={{ backgroundColor: c, boxShadow: c === '#000000' ? 'inset 0 0 0 1px rgba(255,255,255,0.2)' : 'none' }}
+          style={{ backgroundColor: c, boxShadow: c === '#000000' ? 'inset 0 0 0 1px rgba(255,255,255,0.1)' : 'none' }}
         />
       ))}
     </div>
@@ -92,10 +92,10 @@ function RecentStyleThumb({
   return (
     <button
       onClick={onSelect}
-      className="flex-shrink-0 w-[72px] h-[72px] rounded-[10px] bg-bg border border-divider flex items-center justify-center overflow-hidden"
+      className="flex-shrink-0 w-[60px] h-[60px] rounded-[10px] bg-surface/60 flex items-center justify-center overflow-hidden"
     >
       <span
-        className="text-[18px] font-bold leading-none"
+        className="text-[16px] font-bold leading-none"
         style={{
           fontFamily: f.css,
           fontWeight: f.weight,
@@ -239,10 +239,10 @@ export default function EditorPage() {
           <div className="flex justify-end p-4">
             <button
               onClick={() => setIsFullscreen(false)}
-              className="w-[36px] h-[36px] rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center"
+              className="w-[32px] h-[32px] rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center"
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 2L12 12M12 2L2 12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                <path d="M2 2L12 12M12 2L2 12" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
             </button>
           </div>
@@ -254,18 +254,13 @@ export default function EditorPage() {
           className="flex-1 relative flex items-end justify-center overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
-          <div className="absolute inset-0 opacity-5">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="w-full h-px bg-white" style={{ marginTop: `${(i + 1) * 8.3}%` }} />
-            ))}
-          </div>
 
           {/* Play/pause overlay */}
           {!isPlaying && (
             <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="w-[64px] h-[64px] rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M8 4L24 14L8 24V4Z" fill="white"/>
+              <div className="w-[56px] h-[56px] rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                  <path d="M8 4L24 14L8 24V4Z" fill="white" opacity="0.8"/>
                 </svg>
               </div>
             </div>
@@ -289,12 +284,12 @@ export default function EditorPage() {
   return (
     <div className="w-full min-h-dvh bg-bg flex flex-col">
       {/* ──── Nav Bar ──── */}
-      <div className="safe-top sticky top-0 z-40 bg-bg/80 backdrop-blur-xl border-b border-divider">
-        <div className="flex items-center justify-between h-[44px] px-4">
+      <div className="safe-top sticky top-0 z-40 bg-bg/90 backdrop-blur-xl">
+        <div className="flex items-center justify-between h-[44px] px-5">
           {/* Left: Back */}
-          <button onClick={handleBack} className="flex items-center gap-1 text-accent min-h-[44px] min-w-[44px]">
-            <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
-              <path d="M10 2L2 10L10 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <button onClick={handleBack} className="flex items-center text-accent min-h-[44px] min-w-[44px]">
+            <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
+              <path d="M9 1L1 9L9 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
 
@@ -302,15 +297,15 @@ export default function EditorPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsFullscreen(true)}
-              className="min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center text-text-tertiary"
             >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M3 7V3H7M13 3H17V7M17 13V17H13M7 17H3V13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M3 7V3H7M13 3H17V7M17 13V17H13M7 17H3V13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
             <button
               onClick={handleExport}
-              className="h-[34px] px-5 rounded-full bg-accent text-white text-[15px] font-semibold active:scale-[0.96] transition-transform"
+              className="h-[32px] px-5 rounded-full bg-accent text-white text-[13px] font-medium active:scale-[0.96] transition-all duration-300"
             >
               Export
             </button>
@@ -321,22 +316,17 @@ export default function EditorPage() {
       {/* ──── Video Preview ──── */}
       <button
         onClick={togglePlayback}
-        className="w-full bg-surface relative cursor-pointer"
+        className="w-full bg-surface/40 relative cursor-pointer"
         style={{ aspectRatio: '9/8' }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
-        <div className="absolute inset-0 opacity-5">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="w-full h-px bg-white" style={{ marginTop: `${(i + 1) * 8.3}%` }} />
-          ))}
-        </div>
 
         {/* Play/pause indicator */}
         {!isPlaying && (
           <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="w-[56px] h-[56px] rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M7 3L21 12L7 21V3Z" fill="white"/>
+            <div className="w-[48px] h-[48px] rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M7 3L21 12L7 21V3Z" fill="white" opacity="0.8"/>
               </svg>
             </div>
           </div>
@@ -354,22 +344,22 @@ export default function EditorPage() {
       </button>
 
       {/* ──── Segmented Control ──── */}
-      <div className="px-4 pt-4 pb-2">
-        <div className="relative bg-surface rounded-[10px] p-[3px] flex">
+      <div className="px-6 pt-5 pb-3">
+        <div className="relative bg-surface/50 rounded-full p-[2px] flex">
           {/* Sliding indicator */}
           <div
-            className="absolute top-[3px] bottom-[3px] rounded-[8px] bg-accent transition-all duration-300 ease-out"
+            className="absolute top-[2px] bottom-[2px] rounded-full bg-accent/80 transition-all duration-300 ease-out"
             style={{
-              width: `calc(50% - 3px)`,
-              left: activeTabIndex === 0 ? '3px' : 'calc(50%)',
+              width: `calc(50% - 2px)`,
+              left: activeTabIndex === 0 ? '2px' : 'calc(50%)',
             }}
           />
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveEditorTab(tab.toLowerCase() as 'style' | 'text')}
-              className={`relative z-10 flex-1 py-[7px] text-[15px] font-semibold text-center transition-colors duration-200 ${
-                activeEditorTab === tab.toLowerCase() ? 'text-white' : 'text-text-secondary'
+              className={`relative z-10 flex-1 py-[6px] text-[13px] font-medium text-center transition-colors duration-300 ${
+                activeEditorTab === tab.toLowerCase() ? 'text-white' : 'text-text-tertiary'
               }`}
             >
               {tab}
@@ -384,23 +374,23 @@ export default function EditorPage() {
           /* ═══════ STYLE TAB ═══════ */
           <div>
             {/* Clean audio toggle */}
-            <div className="px-4 border-b border-divider">
+            <div className="px-6 py-1">
               <Toggle
                 value={styleSettings.cleanAudio}
                 onChange={(v) => updateStyle({ cleanAudio: v })}
                 label="Clean audio"
                 icon={
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 2V18M6 5V15M14 5V15M2 8V12M18 8V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2V18M6 5V15M14 5V15M2 8V12M18 8V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 }
               />
             </div>
 
             {/* Preset carousel */}
-            <div className="px-4 py-4 border-b border-divider">
-              <h3 className="text-[15px] font-semibold text-text-secondary mb-3">Presets</h3>
-              <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+            <div className="px-6 py-4">
+              <h3 className="text-[10px] font-medium text-text-tertiary/60 uppercase tracking-[0.1em] mb-3">Presets</h3>
+              <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
                 {presets.map((preset) => (
                   <PresetCard
                     key={preset.id}
@@ -420,9 +410,9 @@ export default function EditorPage() {
 
             {/* Recent styles */}
             {recentStyles.length > 0 && (
-              <div className="px-4 py-4 border-b border-divider">
-                <h3 className="text-[13px] font-semibold text-text-tertiary uppercase tracking-wider mb-3">Recent</h3>
-                <div className="flex gap-3">
+              <div className="px-6 py-3">
+                <h3 className="text-[10px] font-medium text-text-tertiary/60 uppercase tracking-[0.1em] mb-3">Recent</h3>
+                <div className="flex gap-2">
                   {recentStyles.map((rs) => (
                     <RecentStyleThumb
                       key={rs.id}
@@ -436,17 +426,17 @@ export default function EditorPage() {
 
             {/* Font & Color */}
             <Section title="Font & Color" defaultOpen={true}>
-              <div className="mb-4">
-                <p className="text-[13px] text-text-tertiary mb-2">Font</p>
+              <div className="mb-5">
+                <p className="text-[11px] text-text-tertiary/50 mb-2">Font</p>
                 <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
                   {fonts.map((f) => (
                     <button
                       key={f.name}
                       onClick={() => updateStyle({ font: f.name })}
-                      className={`flex-shrink-0 px-4 py-2 rounded-[10px] text-[14px] transition-all ${
+                      className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-[13px] transition-all duration-300 ${
                         styleSettings.font === f.name
-                          ? 'bg-accent text-white'
-                          : 'bg-surface text-text-secondary'
+                          ? 'text-accent border-b border-accent'
+                          : 'text-text-tertiary'
                       }`}
                       style={{ fontFamily: f.css, fontWeight: f.weight }}
                     >
@@ -456,13 +446,13 @@ export default function EditorPage() {
                 </div>
               </div>
 
-              <div className="mb-4">
-                <p className="text-[13px] text-text-tertiary mb-2">Text Color</p>
+              <div className="mb-5">
+                <p className="text-[11px] text-text-tertiary/50 mb-3">Text Color</p>
                 <ColorGrid colors={textColors} selected={styleSettings.textColor} onSelect={(c) => updateStyle({ textColor: c })} />
               </div>
 
               <div>
-                <p className="text-[13px] text-text-tertiary mb-2">Outline Color</p>
+                <p className="text-[11px] text-text-tertiary/50 mb-3">Outline Color</p>
                 <ColorGrid colors={outlineColors} selected={styleSettings.outlineColor} onSelect={(c) => updateStyle({ outlineColor: c })} />
               </div>
             </Section>
@@ -486,22 +476,22 @@ export default function EditorPage() {
                 onChange={(v) => updateStyle({ position: v })}
               />
               <div className="mt-2">
-                <p className="text-[13px] text-text-tertiary mb-2">Alignment</p>
+                <p className="text-[11px] text-text-tertiary/50 mb-2">Alignment</p>
                 <div className="flex gap-2">
                   {(['left', 'center', 'right'] as const).map((align) => (
                     <button
                       key={align}
                       onClick={() => updateStyle({ alignment: align })}
-                      className={`flex-1 h-[44px] rounded-[10px] flex items-center justify-center transition-all ${
-                        styleSettings.alignment === align ? 'bg-accent' : 'bg-surface'
+                      className={`flex-1 h-[40px] rounded-[10px] flex items-center justify-center transition-all duration-300 ${
+                        styleSettings.alignment === align ? 'bg-accent/15' : 'bg-surface/40'
                       }`}
                     >
-                      <div className="flex flex-col gap-1 items-center w-[20px]">
-                        <div className={`h-[2px] rounded-full ${styleSettings.alignment === align ? 'bg-white' : 'bg-text-secondary'}`}
+                      <div className="flex flex-col gap-1 items-center w-[18px]">
+                        <div className={`h-[1.5px] rounded-full ${styleSettings.alignment === align ? 'bg-accent' : 'bg-text-tertiary/40'}`}
                           style={{ width: '100%', alignSelf: align === 'left' ? 'flex-start' : align === 'right' ? 'flex-end' : 'center' }} />
-                        <div className={`h-[2px] rounded-full ${styleSettings.alignment === align ? 'bg-white' : 'bg-text-secondary'}`}
+                        <div className={`h-[1.5px] rounded-full ${styleSettings.alignment === align ? 'bg-accent' : 'bg-text-tertiary/40'}`}
                           style={{ width: '70%', alignSelf: align === 'left' ? 'flex-start' : align === 'right' ? 'flex-end' : 'center' }} />
-                        <div className={`h-[2px] rounded-full ${styleSettings.alignment === align ? 'bg-white' : 'bg-text-secondary'}`}
+                        <div className={`h-[1.5px] rounded-full ${styleSettings.alignment === align ? 'bg-accent' : 'bg-text-tertiary/40'}`}
                           style={{ width: '85%', alignSelf: align === 'left' ? 'flex-start' : align === 'right' ? 'flex-end' : 'center' }} />
                       </div>
                     </button>
@@ -521,14 +511,14 @@ export default function EditorPage() {
                 step={0.5}
                 onChange={(v) => updateStyle({ outlineWidth: v })}
               />
-              <div className="border-b border-divider/50">
+              <div className="py-0.5">
                 <Toggle
                   value={styleSettings.shadow}
                   onChange={(v) => updateStyle({ shadow: v })}
                   label="Drop Shadow"
                 />
               </div>
-              <div className="border-b border-divider/50">
+              <div className="py-0.5">
                 <Toggle
                   value={styleSettings.backgroundBox}
                   onChange={(v) => updateStyle({ backgroundBox: v })}
@@ -545,7 +535,7 @@ export default function EditorPage() {
                   onChange={(v) => updateStyle({ backgroundOpacity: v })}
                 />
               )}
-              <div>
+              <div className="py-0.5">
                 <Toggle
                   value={styleSettings.wordHighlight}
                   onChange={(v) => updateStyle({ wordHighlight: v })}
@@ -561,23 +551,21 @@ export default function EditorPage() {
               <div
                 key={chunk.id}
                 data-chunk-index={index}
-                className={`relative transition-all duration-200 ${
-                  index < subtitles.length - 1 ? 'border-b border-divider' : ''
-                }`}
+                className="relative transition-all duration-300"
               >
-                {/* Active indicator — left accent border */}
+                {/* Active indicator — thin accent left border */}
                 {index === currentSubtitleIndex && (
-                  <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-accent rounded-r-full" />
+                  <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent rounded-r-full" />
                 )}
 
-                <div className={`px-4 py-3 ${index === currentSubtitleIndex ? 'bg-accent/5' : ''}`}>
-                  {/* Timecode — tappable to seek */}
+                <div className={`px-6 py-4 ${index === currentSubtitleIndex ? 'bg-accent/3' : ''}`}>
+                  {/* Timecode */}
                   <button
                     onClick={() => {
                       setCurrentSubtitleIndex(index);
                       stopPlayback();
                     }}
-                    className="text-[12px] text-text-secondary font-mono mb-1.5 min-h-[24px] flex items-center"
+                    className="text-[11px] text-text-tertiary/40 font-mono mb-1.5 min-h-[24px] flex items-center"
                   >
                     {chunk.startTime} - {chunk.endTime}
                   </button>
@@ -590,7 +578,7 @@ export default function EditorPage() {
                       setCurrentSubtitleIndex(index);
                       stopPlayback();
                     }}
-                    className="w-full bg-transparent text-[17px] text-text-primary resize-none outline-none leading-relaxed"
+                    className="w-full bg-transparent text-[15px] text-text-primary resize-none outline-none leading-relaxed"
                     rows={Math.ceil(chunk.text.length / 35) || 1}
                     style={{ caretColor: 'var(--accent)' }}
                   />
@@ -606,22 +594,23 @@ export default function EditorPage() {
 
       {/* ──── Discard changes dialog ──── */}
       {showDiscardDialog && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 animate-fade-in">
           <div className="w-full max-w-[393px] mx-4 mb-8 animate-fade-in-up">
-            <div className="bg-surface-high rounded-[14px] overflow-hidden mb-2">
-              <div className="px-4 py-4 text-center border-b border-divider">
+            <div className="bg-surface-high rounded-[16px] overflow-hidden mb-2">
+              <div className="px-4 py-5 text-center">
                 <p className="text-[13px] text-text-secondary">Discard changes? Your edits will be lost.</p>
               </div>
+              <div className="h-px bg-divider/50" />
               <button
                 onClick={() => router.push('/')}
-                className="w-full py-3 text-[17px] text-error font-semibold text-center"
+                className="w-full py-3.5 text-[16px] text-error font-medium text-center"
               >
                 Discard
               </button>
             </div>
             <button
               onClick={() => setShowDiscardDialog(false)}
-              className="w-full py-3 bg-surface-high rounded-[14px] text-[17px] text-accent font-semibold text-center"
+              className="w-full py-3.5 bg-surface-high rounded-[16px] text-[16px] text-accent font-medium text-center"
             >
               Keep Editing
             </button>

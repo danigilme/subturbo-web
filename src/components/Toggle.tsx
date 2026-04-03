@@ -14,16 +14,16 @@ export default function Toggle({ value, onChange, label, icon }: ToggleProps) {
       className="flex items-center justify-between w-full min-h-[44px] py-2"
     >
       <div className="flex items-center gap-3">
-        {icon && <span className="text-text-secondary">{icon}</span>}
-        {label && <span className="text-[17px] text-text-primary">{label}</span>}
+        {icon && <span className="text-text-tertiary">{icon}</span>}
+        {label && <span className="text-[15px] text-text-primary">{label}</span>}
       </div>
       <div
         className="toggle-track relative flex-shrink-0"
-        style={{ backgroundColor: value ? 'var(--success)' : 'var(--surface-high)' }}
+        style={{ backgroundColor: value ? 'var(--accent)' : 'var(--surface-high)' }}
       >
         <div
           className="toggle-thumb absolute top-[2px]"
-          style={{ transform: value ? 'translateX(22px)' : 'translateX(2px)' }}
+          style={{ transform: value ? 'translateX(20px)' : 'translateX(2px)' }}
         />
       </div>
     </button>

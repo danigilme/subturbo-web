@@ -27,7 +27,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
     return (
       <PhoneFrame>
         <div className="w-full h-dvh bg-bg flex items-center justify-center">
-          <div className="text-accent text-[22px] font-bold animate-pulse">SubTurbo</div>
+          <div className="text-accent text-[20px] font-normal tracking-[0.08em] animate-pulse opacity-60">SubTurbo</div>
         </div>
       </PhoneFrame>
     );

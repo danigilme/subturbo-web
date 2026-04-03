@@ -16,17 +16,16 @@ export default function PresetCard({ name, active, onSelect, previewStyle }: Pre
   return (
     <button
       onClick={onSelect}
-      className={`flex-shrink-0 w-[140px] rounded-[12px] p-3 transition-all duration-200 ${
+      className={`flex-shrink-0 w-[130px] rounded-[14px] p-2.5 transition-all duration-300 ${
         active
-          ? 'bg-surface border-2 border-accent shadow-lg shadow-accent/10'
-          : 'bg-surface border-2 border-transparent'
+          ? 'bg-surface border border-accent/40'
+          : 'bg-surface/60 border border-transparent'
       }`}
     >
       {/* Preview area */}
-      <div className="w-full h-[80px] bg-bg rounded-[8px] flex items-end justify-center pb-2 mb-2 overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
+      <div className="w-full h-[72px] bg-bg/60 rounded-[10px] flex items-end justify-center pb-2 mb-2 overflow-hidden relative">
         <span
-          className="relative z-10 text-[13px] font-bold leading-tight text-center px-1"
+          className="relative z-10 text-[12px] font-bold leading-tight text-center px-1"
           style={{
             fontFamily: previewStyle.font,
             color: previewStyle.color,
@@ -39,7 +38,7 @@ export default function PresetCard({ name, active, onSelect, previewStyle }: Pre
           Subtitles
         </span>
       </div>
-      <span className={`text-[13px] font-medium ${active ? 'text-accent' : 'text-text-secondary'}`}>
+      <span className={`text-[12px] ${active ? 'text-accent' : 'text-text-tertiary'}`}>
         {name}
       </span>
     </button>

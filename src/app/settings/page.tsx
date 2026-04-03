@@ -7,9 +7,9 @@ import { useAppStore } from '@/store/useAppStore';
 
 function SettingsGroup({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="mb-8">
-      <h3 className="text-[13px] font-semibold text-text-tertiary uppercase tracking-wider px-4 mb-2">{title}</h3>
-      <div className="bg-surface rounded-[12px] mx-4 overflow-hidden">
+    <div className="mb-10">
+      <h3 className="text-[10px] font-medium text-text-tertiary/60 uppercase tracking-[0.1em] px-6 mb-3">{title}</h3>
+      <div className="mx-6">
         {children}
       </div>
     </div>
@@ -20,16 +20,16 @@ function SettingsRow({ label, value, onClick, isLast = false }: { label: string;
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center justify-between px-4 min-h-[44px] py-3 ${!isLast ? 'border-b border-divider' : ''}`}
+      className={`w-full flex items-center justify-between min-h-[44px] py-3 ${!isLast ? 'border-b border-divider/30' : ''}`}
     >
-      <span className="text-[17px] text-text-primary">{label}</span>
+      <span className="text-[15px] text-text-primary">{label}</span>
       <div className="flex items-center gap-2">
         {typeof value === 'string' ? (
-          <span className="text-[17px] text-text-secondary">{value}</span>
+          <span className="text-[15px] text-text-tertiary">{value}</span>
         ) : value}
         {onClick && (
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
-            <path d="M1 1L7 7L1 13" stroke="var(--text-tertiary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none">
+            <path d="M1 1L6 6L1 11" stroke="var(--text-tertiary)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.4"/>
           </svg>
         )}
       </div>
@@ -51,28 +51,28 @@ export default function SettingsPage() {
     <div className="w-full min-h-dvh bg-bg flex flex-col">
       <NavBar title="Settings" />
 
-      <div className="flex-1 overflow-y-auto no-scrollbar safe-bottom pt-4">
+      <div className="flex-1 overflow-y-auto no-scrollbar safe-bottom pt-6">
         {/* Subscription */}
         <SettingsGroup title="Subscription">
-          <div className="px-4 py-3 border-b border-divider">
+          <div className="py-3 border-b border-divider/30">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[17px] text-text-primary font-semibold">SubTurbo Pro</p>
-                <p className="text-[13px] text-text-secondary mt-0.5">
+                <p className="text-[15px] text-text-primary font-medium">SubTurbo Pro</p>
+                <p className="text-[12px] text-text-tertiary mt-0.5">
                   {isSubscribed ? 'Renews Apr 30, 2026' : 'Not subscribed'}
                 </p>
               </div>
               {isSubscribed ? (
-                <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-success/10">
-                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
-                    <path d="M1 5L4.5 8.5L11 1.5" stroke="var(--success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-accent/8">
+                  <svg width="10" height="8" viewBox="0 0 12 10" fill="none">
+                    <path d="M1 5L4.5 8.5L11 1.5" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span className="text-[12px] text-success font-medium">Active</span>
+                  <span className="text-[11px] text-accent">Active</span>
                 </div>
               ) : (
                 <button
                   onClick={() => router.push('/paywall')}
-                  className="px-3 py-1.5 rounded-full bg-accent text-white text-[13px] font-semibold"
+                  className="px-4 py-1.5 rounded-full bg-accent text-white text-[12px] font-medium"
                 >
                   Upgrade
                 </button>
@@ -93,7 +93,7 @@ export default function SettingsPage() {
             value={styleSettings.preset.charAt(0).toUpperCase() + styleSettings.preset.slice(1)}
             onClick={() => router.push('/editor')}
           />
-          <div className="px-4">
+          <div>
             <Toggle
               value={styleSettings.cleanAudio}
               onChange={(v) => updateStyle({ cleanAudio: v })}
@@ -117,8 +117,8 @@ export default function SettingsPage() {
         </SettingsGroup>
 
         {/* Version */}
-        <div className="text-center py-4">
-          <p className="text-[13px] text-text-tertiary">Version 1.0.0 (42)</p>
+        <div className="text-center py-6">
+          <p className="text-[11px] text-text-tertiary/40">Version 1.0.0 (42)</p>
         </div>
       </div>
     </div>
